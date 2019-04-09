@@ -1,0 +1,79 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<!--/.sidebar-->
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+  
+<app-breadcrumb></app-breadcrumb>
+  
+    <div class="panel panel-container">
+      <div class="row">
+        <div class="col-xs-12 col-md-6 col-lg-6 no-padding">
+          <div class="panel panel-teal panel-widget border-right">
+            <div class="row no-padding"><em class="fa fa-xl fa-music color-blue"></em>
+              <div class="large">{{ totalSongs }}</div>
+              <div class="text-muted">Total Songs</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-6 no-padding">
+          <div class="panel panel-blue panel-widget border-right">
+            <div class="row no-padding"><em class="fa fa-xl fa-bug color-orange"></em>
+              <div class="large">{{ totalPlaylist }}</div>
+              <div class="text-muted">Total Playlists</div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+      <!--/.row-->
+    </div>
+
+    <p-table [value]="songsData">
+      <ng-template pTemplate="header">
+          <tr cellspacing="10">
+              <th cellspacing="10">Tittle</th>
+              <th cellspacing="10">Created by</th>
+              <th cellspacing="10">Option</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-songsData>
+          <tr>
+              <td>{{songsData.title}}</td>
+              <td>{{songsData.artist.firstName}}</td>
+              <td>
+                <div class="row">
+                  <div class="col-md-3"> 
+                <button class="btn btn-primary" (click)="playSong(songsData.url)">Play</button></div> 
+                <div class="col-md-3">
+                <button class="btn btn-primary" (click)="editSong(songsData)">Edit</button>
+              </div>
+              <div class="col-md-3">
+                  <button class="btn btn-primary" (click)="deleteSong(songsData)">Delete</button>
+                </div>
+              </div>
+              </td>
+          </tr>
+      </ng-template>
+  </p-table>
+  <span>
+      Page number: => 
+      <p-selectButton [options]="types" [(ngModel)]="selectedType" (click)="pageChange(selectedType)"></p-selectButton>
+    </span>
+
+
+    <p>Selected Type: <span style="font-weight: bold">{{selectedType}}</span></p>
+
+  <div style="height: 100px" >
+
+  </div>
+  <p-dialog header="Video" [(visible)]="display">
+<object style="width:100%;height:100%;width: 820px; height: 461.25px; float: none; clear: both; margin: 2px auto;" [data]= "videoUrl | safe">
+    </object> 
+</p-dialog>
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+  
+
+  <app-footer></app-footer>
+  <!--/.row-->
+</div>

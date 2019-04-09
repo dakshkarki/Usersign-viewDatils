@@ -1,0 +1,61 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="page-header">
+  <h3 class="page-title">
+    Payment Getway
+  </h3>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Stripe Payment</li>
+    </ol>
+  </nav>
+</div>
+
+<div class="row">
+  <div class="col-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="container">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col col-md-6">
+                  <h1 style="float:center;">Welcome to {{ title }}!</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <div class="col col-md-6">
+              <p>Select amount you want to pay</p>
+              <select class="form-control" (change)="openCheckout($event)">
+                <option selected="true" disabled="disabled">Choose one</option>
+                <option *ngFor="let v of pay" [value]="v.value">{{
+                  v.money
+                }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <div class="container">
+                <div class="row" *ngIf="allDone">
+                  <div class="col col-md-6">
+                    <span style="color: green; font-size: 50px;">
+                      Your Payment done :)
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
